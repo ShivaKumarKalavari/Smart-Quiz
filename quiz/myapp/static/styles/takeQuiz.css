@@ -1,0 +1,107 @@
+body {
+    overflow:auto;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    max-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    padding-top: 800px;
+ }
+
+  .quiz-container {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  #timer-display {
+    font-size: 20px;
+    color: #e63946;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  #options-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .option {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+
+  .option:hover {
+    background-color: #c0c0c0;
+  }
+
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  /* Style for the overlay (dim background) */
+  .overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Style for the prompt box */
+  .prompt-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Style for the close button (X) */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* Optional styling for the message */
+  .prompt-message {
+    font-size: 18px;
+    margin: 20px 0;
+  }

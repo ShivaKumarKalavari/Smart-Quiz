@@ -1,0 +1,16 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results</title>
+</head>
+<body>
+    <div id="result-container">
+        <h2 id="result">Your Score: {{ score }} / {{ total }}</h2>
+        <p id="result-info">Correct: {{ score }}<br> Wrong: {{ total|subtract:score }}</p>
+        <p>Questions Attempted: {{ attempted }}</p>
+    </div>
+
+</body>
+</html>

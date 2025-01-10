@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} User Menu {% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<p>This is Admin Menu</p>
+<button id="create-quiz" onclick="createQuiz()">Create Quiz</button>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'script/adminMenu.js' %}"></script>
+{% endblock %}

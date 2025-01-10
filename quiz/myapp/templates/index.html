@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Online Code Execution {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Problem Description Section -->
+    <div class="problem-description">
+        <h2>Problem Description</h2>
+        <div id="problem-details">
+            <p>Loading problem...</p>
+        </div>
+    </div>
+
+    <!-- Code Editor Section -->
+    <div class="code-editor">
+        <label for="language-select">Select Language:</label>
+        <select id="language-select">
+            <option value="63">JavaScript</option>
+            <option value="35">Python</option>
+            <option value="62">Java</option>
+            <option value="54">C++</option>
+            <option value="50">C</option>
+        </select>
+        <div id="editor-container"></div>
+        <div class="editor-actions">
+            <label for="custom-input-checkbox">
+                <input type="checkbox" id="custom-input-checkbox"> Use Custom Input
+            </label>
+            <button id="run-code">Run</button>
+            <button id="submit-code">Submit</button>
+        </div>
+    </div>
+
+    <!-- Input and Output Area -->
+    <div class="io-area">
+        <div class="input-area" id="input-area">
+            <h3>Input Area</h3>
+            <textarea id="custom-input" placeholder="Enter custom input here..."></textarea>
+        </div>
+        <div class="output-area" id="output-area">
+            <h3>Output Area</h3>
+            <pre id="output">Output will be displayed here...</pre>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'script/editor.js' %}"></script>
+<script>
+    // Fetch problem details and populate the UI
+    async function fetchProblemDetails() {
+        const response = await fetch('/get_problem/');
+        const data = await response.json();
+        document.getElementById('problem-details').innerHTML = `
+            <p><strong>Question:</strong> ${data.question}</p>
+            <p><strong>Constraints:</strong> ${data.constraints}</p>
+            <p><strong>Public Test Cases:</strong></p>
+            <ul>${data.public_test_cases.map(tc => `<li>${tc}</li>`).join('')}</ul>
+        `;
+    }
+
+    // Call fetchProblemDetails on page load
+    fetchProblemDetails();
+</script>
+{% endblock %}

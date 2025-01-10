@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} User Menu {% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Available Quizzes</h1>
+
+        {% if quizzes %}
+            <ul class="quiz-list">
+                {% for quiz in quizzes %}
+                    <li>
+                        <h2>{{ quiz.title }}</h2>
+                        <p>{{ quiz.description }}</p>
+                        <p><strong>Created on:</strong> {{ quiz.created_at|date:"M d, Y" }}</p>
+                        <form method="GET" action="{% url 'take_quiz' quiz.id %}">
+                            <button type="submit">Take Quiz</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No quizzes available at the moment. Please check back later!</p>
+        {% endif %}
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'script/userMenu.js' %}"></script>
+{% endblock %}

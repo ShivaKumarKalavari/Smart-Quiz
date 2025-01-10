@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} Coding Quiz - Titles {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ quiz.title }} - Coding Quiz</h1>
+    <h3>Time Remaining: <span id="timer">{{ quiz.duration }}</span> minutes</h3>
+    <ul id="problem-list">
+        {% for problem in problems %}
+            <li>
+                <a href="{% url 'execute_code' problem.id %}">{{ problem.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <button id="submit-quiz" class="btn btn-primary">Submit Quiz</button>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    let timeLeft = {{ quiz.duration }} * 60;
+
+    function startTimer() {
+        const timerElement = document.getElementById("timer");
+        const interval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            if (--timeLeft < 0) {
+                clearInterval(interval);
+                alert("Time is up! Submitting your quiz...");
+                document.getElementById("submit-quiz").click();
+            }
+        }, 1000);
+    }
+
+    startTimer();
+
+    document.getElementById("submit-quiz").addEventListener("click", () => {
+        window.location.href = "{% url 'submit_quiz' quiz.id %}";
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Login Page {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Online Quiz Management System</h1>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div id="login-form">
+                <!-- Add role switch buttons -->
+                <div class="login-options">
+                    <button onclick="switchRole('admin')">Admin Login</button>
+                    <button onclick="switchRole('participant')">Participant Login</button>
+                </div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <input type="hidden" id="role" name="role" value="participant"> <!-- Default role -->
+
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'script/login.js' %}"></script>
+{% endblock %}
