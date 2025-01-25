@@ -17,7 +17,7 @@ import json
 
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com/submissions"
 JUDGE0_HEADERS = {
-    "X-RapidAPI-Key": "6f9ab2659cmshf779f5688a885f8p15944djsn24925011366a",  # Replace with your Judge0 API key
+    "X-RapidAPI-Key": "XXXXXXXXXXXXXXXXXXXXXXXXXxxx",  # Replace with your Judge0 API key
     "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
     "Content-Type": "application/json"
 }
